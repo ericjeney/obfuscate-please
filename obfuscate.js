@@ -1,8 +1,10 @@
 var obfuscator = {
+    // Generates a random number between 1 and `max`
     randomNumber: function(max) {
         return Math.floor((Math.random() * max) + 1);
     },
 
+    // Encodes all character in an address into HTML entities
     encode: function(text) {
         var newText = "";
         for(var i = 0; i < text.length; i++) {
@@ -11,6 +13,7 @@ var obfuscator = {
         return newText;
     },
 
+    // Inserts random, invisible spans into the email text
     spans: function(text) {
         var newText;
         var spansInserted = 0;
@@ -33,17 +36,44 @@ var obfuscator = {
         return newText;
     },
 
+    // Includes a mailto: link.
     mailto: function(text) {
         return "<a href=\"mailto:" + text + "\">" + text + "</a>";
+    },
+
+    // Wrap `text` in a javascript snippet that will print it out to the
+    // document.
+    javascript: function(text) {
+        newText = "<script type=\"text/javascript\">document.write(\"";
+
+        for(var i = 0; i < text.length; i++) {
+            // Be sure to escape quotation marks
+            if(text[i] !== "\"") {
+                newText += text[i];
+            }else {
+                newText += "\\\"";
+            }
+            if(this.randomNumber(10) == 1) {
+                newText += "\"+\"";
+            }
+        }
+
+        newText += "\");</script>";
+        return newText;
     }
 
 };
 
 function obfuscate() {
     var text = $("#toObfuscate").val();
+
+    // If the user doesn't provide us with any text, we'll just
+    // use our placeholder text.
     if(text === "") {
         text = $("#toObfuscate").attr("placeholder");
     }
+
+    // Run through an perform all of the operations checked off.
     $("#options input:checked").each(function(index, el) {
         text = obfuscator[el.id](text);
     });
@@ -52,6 +82,8 @@ function obfuscate() {
 }
 
 $(function() {
+    // Bind to a few actions so that the obfuscation happens
+    // in realtime
     $("#toObfuscate").bind("keyup", function() {
         obfuscate();
     });
@@ -60,5 +92,7 @@ $(function() {
         obfuscate();
     });
 
+    // Obfuscate our dummy text first, so the user has an idea
+    // what theirs will look like.
     obfuscate();
 });
