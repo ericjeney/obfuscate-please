@@ -1,35 +1,49 @@
 <html>
 <head>
     <title>Obfuscate, please!</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
     <script language="javascript" src="jquery-1.8.2.js"></script>
     <script language="javascript" src="obfuscate.js"></script>
 </head>
 
 <body>
-    <div id="inputBox">
-        <input type="email" id="toObfuscate" placeholder="&#101;&#114;&#105;&#99;&#64;&#111;&#98;&#102;&#117;&#115;&#99;&#97;&#116;&#101;&#112;&#108;&#101;&#97;&#115;&#101;&#46;&#99;&#111;&#109;" />
+    <div id="forkDiv">
+        <a href="http://github.com/ericjeney/obfuscate-please" target="_blank">
+            <img src="forkme.png" alt="Fork me on Github" />
+        </a>
     </div>
 
-    <div id="options">
-        <input type="checkbox" id="encode" />
-        <label for="encode">Encode characters</label>
-        <br />
-
-        <input type="checkbox" id="spans" />
-        <label for="spans">Insert invisible spans</label>
-        <br />
-
-        <input type="checkbox" id="mailto" />
-        <label for="mailto">Include mailto link</label>
-        <br />
-
-        <input type="checkbox" id="javascript" />
-        <label for="javascript">Write the email using Javascript</label>
-        <br />
+    <div id="logoDiv">
+        <img src="logo.png" alt="obfuscate, please" width="392" height="49"/>
     </div>
+    <div id="content">
+        <div id="inputBox">
+            <input type="email" id="toObfuscate" placeholder="&#101;&#114;&#105;&#99;&#64;&#111;&#98;&#102;&#117;&#115;&#99;&#97;&#116;&#101;&#112;&#108;&#101;&#97;&#115;&#101;&#46;&#99;&#111;&#109;" />
+        </div>
 
-    <div id="output">
-        <textarea id="obfuscatedText" readonly="readonly" cols="60" rows="10"></textarea>
+        <div id="options">
+            <input type="checkbox" id="encode" checked="checked" />
+            <label for="encode">Encode characters</label>
+            <br />
+
+            <input type="checkbox" id="spans" />
+            <label for="spans">Insert invisible spans</label>
+            <br />
+
+            <input type="checkbox" id="mailto" />
+            <label for="mailto">Include mailto link</label>
+            <br />
+
+            <input type="checkbox" id="javascript" />
+            <label for="javascript">Write using Javascript</label>
+            <br />
+        </div>
+
+        <div id="output">
+            <textarea id="obfuscatedText" readonly="readonly" cols="50" rows="10"></textarea>
+        </div>
+
+        <div style="clear:both" />
     </div>
 </body>
 </html>
