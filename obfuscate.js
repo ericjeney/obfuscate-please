@@ -5,17 +5,21 @@ var obfuscator = {
     },
 
     // Encodes all character in an address into HTML entities
-    encode: function(text) {
+    encode: function(emailObj) {
         var newText = "";
+        var text = emailObj.cleanEmail;
         for(var i = 0; i < text.length; i++) {
             newText += "&#" + text.charCodeAt(i) + ";";
         }
-        return newText;
+
+        emailObj.text = newText;
+        emailObj.cleanEmail = newText;
     },
 
     // Inserts random, invisible spans into the email text
-    spans: function(text) {
+    spans: function(emailObj) {
         var newText;
+        var text = emailObj.cleanEmail;
         var spansInserted = 0;
         while(spansInserted < 1 || spansInserted > 3) {
             newText = "";
@@ -33,18 +37,20 @@ var obfuscator = {
             }
         }
 
-        return newText;
+        // Don't add spans into the cleanEmail, or mailto will barf.
+        emailObj.text = newText;
     },
 
     // Includes a mailto: link.
-    mailto: function(text) {
-        return "<a href=\"mailto:" + text + "\">" + text + "</a>";
+    mailto: function(emailObj) {
+        emailObj.text = "<a href=\"mailto:" + emailObj.cleanEmail + "\">" + emailObj.text + "</a>";
     },
 
     // Wrap `text` in a javascript snippet that will print it out to the
     // document.
-    javascript: function(text) {
-        newText = "<script type=\"text/javascript\">document.write(\"";
+    javascript: function(emailObj) {
+        var text = emailObj.text;
+        var newText = "<script type=\"text/javascript\">document.write(\"";
 
         for(var i = 0; i < text.length; i++) {
             // Be sure to escape quotation marks
@@ -59,7 +65,8 @@ var obfuscator = {
         }
 
         newText += "\");</script>";
-        return newText;
+
+        emailObj.text = newText;
     }
 
 };
@@ -73,12 +80,14 @@ function obfuscate() {
         text = $("#toObfuscate").attr("placeholder");
     }
 
+    emailObj = {text: text, cleanEmail: text};
+
     // Run through an perform all of the operations checked off.
     $("#options input:checked").each(function(index, el) {
-        text = obfuscator[el.id](text);
+        obfuscator[el.id](emailObj);
     });
 
-    $("#obfuscatedText").text(text);
+    $("#obfuscatedText").text(emailObj.text);
 }
 
 $(function() {
