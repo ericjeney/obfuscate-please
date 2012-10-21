@@ -80,7 +80,7 @@ function obfuscate() {
         text = $("#toObfuscate").attr("placeholder");
     }
 
-    emailObj = {text: text, cleanEmail: text};
+    var emailObj = {text: text, cleanEmail: text};
 
     // Run through an perform all of the operations checked off.
     $("#options input:checked").each(function(index, el) {
@@ -88,6 +88,21 @@ function obfuscate() {
     });
 
     $("#obfuscatedText").text(emailObj.text);
+}
+
+function checkWarnings() {
+    if($("#javascript").attr("checked")) {
+        $("#info").slideUp();
+        $("#mailtoWarning").slideUp();
+        $("#javascriptWarning").slideDown();
+    }else if($("#spans").attr("checked") && $("#mailto").attr("checked")) {
+        $("#info").slideUp();
+        $("#javascriptWarning").slideUp();
+        $("#mailtoWarning").slideDown();
+    }else {
+        $("#mailtoWarning").slideUp();
+        $("#javascriptWarning").slideUp();
+    }
 }
 
 $(function() {
@@ -98,6 +113,7 @@ $(function() {
     });
 
     $("input").change(function() {
+        checkWarnings();
         obfuscate();
     });
 
