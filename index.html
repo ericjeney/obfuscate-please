@@ -17,8 +17,10 @@
         <img src="img/logo.png" alt="obfuscate, please" width="392" height="49"/>
     </div>
     <div id="content">
-        <div id="inputBox">
-            <input type="email" id="toObfuscate" placeholder="&#101;&#114;&#105;&#99;&#64;&#111;&#98;&#102;&#117;&#115;&#99;&#97;&#116;&#101;&#112;&#108;&#101;&#97;&#115;&#101;&#46;&#99;&#111;&#109;" />
+        <div id="inputWrapper">
+            <div id="inputBox">
+                <input type="email" id="toObfuscate" placeholder="&#101;&#114;&#105;&#99;&#64;&#111;&#98;&#102;&#117;&#115;&#99;&#97;&#116;&#101;&#112;&#108;&#101;&#97;&#115;&#101;&#46;&#99;&#111;&#109;" />
+            </div>
         </div>
 
         <div id="options">
@@ -47,7 +49,13 @@
     </div>
 
     <div id="footer">
-        About.  Twitter.
+        <div id="links">
+            <a href="http://madebyknight.com/why-obfuscate">Why obfuscate?</a>
+        </div>
+        <div id="twitterButton">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://obfuscateplease.com/" data-text="Quickly obfuscate any email address!" data-via="madebyknight">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
     </div>
 </body>
 </html>
