@@ -41,18 +41,22 @@
         <div id="options">
             <input type="checkbox" id="encode" checked="checked" />
             <label for="encode">Encode characters</label>
+            <img src="img/help.png" height="16" width="16" alt="Help" onclick="showExplanation('encode');" style="cursor: pointer" />
             <br />
 
             <input type="checkbox" id="spans" />
             <label for="spans">Insert invisible spans</label>
+            <img src="img/help.png" height="16" width="16" alt="Help" onclick="showExplanation('spans');" style="cursor: pointer" />
             <br />
 
             <input type="checkbox" id="mailto" />
             <label for="mailto">Include mailto link</label>
+            <img src="img/help.png" height="16" width="16" alt="Help" onclick="showExplanation('mailto');" style="cursor: pointer" />
             <br />
 
             <input type="checkbox" id="javascript" />
             <label for="javascript">Write using Javascript</label>
+            <img src="img/help.png" height="16" width="16" alt="Help" onclick="showExplanation('javascript');" style="cursor: pointer" />
             <br />
         </div>
 
@@ -61,6 +65,24 @@
         </div>
 
         <div style="clear:both"></div>
+    </div>
+
+    <div id="explanations">
+        <div id="encodeExplanation">
+            <strong>Encode characters:</strong> Rewrites each character in the address in its HTML Entity form. This is easily parsed, but evades most basic email harvesters.
+        </div>
+
+        <div id="spansExplanation">
+            <strong>Insert invisible spans:</strong> Inserts random span elements in random locations in the address.  These spans are hidden using CSS, leaving them completely invisible to the end user, but not to harvesters.
+        </div>
+
+        <div id="mailtoExplanation">
+            <strong>Include mailto link:</strong> Wraps the address inside of a mailto link, allowing end users to send an email to the address simply by clicking on it. Note: Invisible spans can't be inserted in the 'href' portion of the link.
+        </div>
+
+        <div id="javascriptExplanation">
+            <strong>Write using Javascript:</strong> Creates a small javascript snippet that will write the email address directly to the page.  This prevents harvesters that can't parse javascript from acquiring the address, but also requires that end users have javascript enabled.
+        </div>
     </div>
 
     <div id="footer">

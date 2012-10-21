@@ -95,6 +95,7 @@ function checkWarnings() {
         $("#info").slideUp();
         $("#mailtoWarning").slideUp();
         $("#javascriptWarning").slideDown();
+        $("#javascriptExplanation").slideDown();
     }else if($("#spans").attr("checked") && $("#mailto").attr("checked")) {
         $("#info").slideUp();
         $("#javascriptWarning").slideUp();
@@ -103,6 +104,17 @@ function checkWarnings() {
         $("#mailtoWarning").slideUp();
         $("#javascriptWarning").slideUp();
     }
+}
+
+function showExplanation(explanation) {
+    var explanations = ["encode", "spans", "mailto", "javascript"];
+    for(var e in explanations) {
+        if(explanations[e] !== explanation) {
+            $("#" + explanations[e] + "Explanation").slideUp();
+        }
+    }
+
+    $("#" + explanation + "Explanation").slideToggle();
 }
 
 $(function() {
