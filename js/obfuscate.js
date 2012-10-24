@@ -95,7 +95,6 @@ function checkWarnings() {
         $("#info").slideUp();
         $("#mailtoWarning").slideUp();
         $("#javascriptWarning").slideDown();
-        $("#javascriptExplanation").slideDown();
     }else if($("#spans").attr("checked") && $("#mailto").attr("checked")) {
         $("#info").slideUp();
         $("#javascriptWarning").slideUp();
